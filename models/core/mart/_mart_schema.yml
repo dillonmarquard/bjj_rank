@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: mart_user_mmr
+    columns:
+      - name: user_id
+        tests:
+          - primary_key
+      - name: username
+      - name: current_mmr

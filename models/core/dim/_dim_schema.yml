@@ -1,0 +1,41 @@
+version: 2
+
+models:
+  - name: users
+    description: "Table of Users (no personally identifiable information)"
+    columns:
+      - name: id
+        tests:
+          - primary_key
+      - name: username
+        tests:
+          - not_null
+      - name: created_at
+        tests:
+          - not_null
+      - name: current_mmr
+      
+  - name: users_info
+    description: "Table of Users (personally identifiable information)"
+    columns:
+      - name: id
+        tests:
+          - primary_key
+          - relationships:
+              to: ref('users')
+              field: id
+      - name: firstname
+      - name: lastname
+      - name: email
+  
+  - name: events
+    description: "Table of Events and related information"
+    columns:
+      - name: id
+        tests:
+          - primary_key
+      - name: name
+      - name: info
+      - name: address
+      - name: event_begin_at
+      - name: event_end_at

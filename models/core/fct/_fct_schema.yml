@@ -1,0 +1,28 @@
+version: 2
+
+models:
+  - name: matches
+    description: "A history of matches"
+    columns:
+      - name: id
+        description: "The primary key for this table"
+        tests:
+          - primary_key
+      - name: event_id
+        tests:
+          - relationships:
+              to: ref('events')
+              field: id
+      - name: user_id
+        description: "The user competing"
+      - name: opponent_id
+        description: "The opponent user competing"
+      - name: is_winner
+        description: "boolean of if the user_id won the match"
+        tests:
+          - accepted_values:
+              values: [0,1] 
+              quote: false
+      - name: mmr_change
+        description: "the change in users mmr from the match"
+      - name: match_at
